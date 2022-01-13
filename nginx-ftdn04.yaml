@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-nginx-ftdn04
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-ftdn04
+  namespace: my-nginx-ftdn04
+  labels:
+    name: nginx-ftdn04
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nginx-ftdn04
+  template:
+    metadata:
+      namespace: my-nginx-ftdn04
+      labels:
+        name: nginx-ftdn04
+    spec:
+      containers:
+      - name: nginx-ftdn04
+        image: nginx
+        ports:
+        - containerPort: 80
+
